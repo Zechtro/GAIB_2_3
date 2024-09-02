@@ -11,11 +11,12 @@ class Node():
         self.value = value
         
 class DecisionTreeClassifier():
-    def __init__(self, min_samples_split=2, max_depth=2):
+    def __init__(self, min_samples_split=2, max_depth=2, info_gain_method="entropy"):
         self.root = None
         
         self.min_samples_split = min_samples_split
         self.max_depth = max_depth
+        self.info_gain_method = info_gain_method
         
     def build_tree(self, dataset, curr_depth=0):
         
@@ -44,7 +45,7 @@ class DecisionTreeClassifier():
                 dataset_left, dataset_right = self.split(dataset, feature_index, threshold)
                 if len(dataset_left)>0 and len(dataset_right)>0:
                     y, left_y, right_y = dataset[:, -1], dataset_left[:, -1], dataset_right[:, -1]
-                    curr_info_gain = self.information_gain(y, left_y, right_y, "gini")
+                    curr_info_gain = self.information_gain(y, left_y, right_y, self.info_gain_method)
                     if curr_info_gain>max_info_gain:
                         best_split["feature_index"] = feature_index
                         best_split["threshold"] = threshold
@@ -63,10 +64,12 @@ class DecisionTreeClassifier():
     def information_gain(self, parent, l_child, r_child, mode="entropy"):
         weight_l = len(l_child) / len(parent)
         weight_r = len(r_child) / len(parent)
-        if mode=="gini":
+        if(mode=="gini"):
             gain = self.gini_index(parent) - (weight_l*self.gini_index(l_child) + weight_r*self.gini_index(r_child))
-        else:
+        elif(mode=="entropy"):
             gain = self.entropy(parent) - (weight_l*self.entropy(l_child) + weight_r*self.entropy(r_child))
+        else:
+            raise ValueError ("Invalid information gain method, should either be: gini or entropy.")
         return gain
     
     def entropy(self, y):
