@@ -102,22 +102,22 @@ class KMeans:
         plt.show()
 
 
-import pandas as pd
-df = pd.read_csv("dataset/SleepyDriverEEGBrainwave.csv")
-y = df["classification"].values
-X = df.drop("classification", axis=1)
+# import pandas as pd
+# df = pd.read_csv("dataset/SleepyDriverEEGBrainwave.csv")
+# y = df["classification"].values
+# X = df.drop("classification", axis=1)
 
-print(X.head())
+# print(X.head())
 
-model = KMeans(k=2)
-predictions = model.predict(X)
-features = X.columns
-features = features.drop("delta")
-len_feat = len(features)
-print(features)
-# feature visualisasi bagus: delta
-for i in range(len_feat):
-    for j in range(len_feat):
-        if(i!=j):
-            # model.plot2D(features[i], features[j])
-            model.plot3D("delta", features[i], features[j])
+# model = KMeans(k=2)
+# predictions = model.predict(X)
+# features = X.columns
+# features = features.drop("delta")
+# len_feat = len(features)
+# print(features)
+# # feature visualisasi bagus: delta
+# for i in range(len_feat):
+#     for j in range(len_feat):
+#         if(i!=j):
+#             # model.plot2D(features[i], features[j])
+#             model.plot3D("delta", features[i], features[j])

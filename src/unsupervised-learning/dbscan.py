@@ -50,7 +50,7 @@ class DBSCAN:
             type = 3 #outlier
         return [NeighboringPoints, type]
 
-    def predict(self, X): #x is a numpy array of lists. The list contains the coordinates of the datapoints.
+    def predict(self, X):
         self.X = X.values
         self.features = X.columns
         currentCluster = 0 
@@ -58,7 +58,7 @@ class DBSCAN:
         for data in self.X: #Step 1: Initialize points as core, border, or outlier points; O(n^2)
             [NeighboringPoints, type] = self._get_neighbor(data)
             points.append(Point(data, type, NeighboringPoints, 1 - type))
-        for i in range(len(self.X)): #Loop through all datapoints
+        for i in range(len(self.X)):
             if points[i].cluster == 0: #if a point is a core point and it has not been clustered yet
                                     #Since there are log(n) clusters, you encounter an unclustered core point log(n) times
                 currentCluster = currentCluster + 1
@@ -80,9 +80,6 @@ class DBSCAN:
             i = i + 1
     
     def plot2D(self,feature1, feature2):
-        # i = self.features.get_loc(feature1)
-        # j = self.features.get_loc(feature2)
-
         fig, ax = plt.subplots(figsize=(8, 5))
         ax.set_xlabel(feature1)
         ax.set_ylabel(feature2)
@@ -93,10 +90,6 @@ class DBSCAN:
         plt.show()
         
     def plot3D(self,feature1, feature2, feature3):
-        # i = (self.features).get_loc(feature1)
-        # j = (self.features).get_loc(feature2)
-        # k = (self.features).get_loc(feature3)
-
         fig = plt.figure(figsize=(8, 5))
         ax = fig.add_subplot(111, projection='3d')
 
