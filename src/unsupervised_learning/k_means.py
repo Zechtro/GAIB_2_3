@@ -31,7 +31,6 @@ class KMeans:
 
         return self._get_cluster_labels(self.clusters)
 
-
     def _get_cluster_labels(self, clusters):
         labels = np.empty(self.n_samples)
         for cluster_idx, cluster in enumerate(clusters):
@@ -39,7 +38,6 @@ class KMeans:
                 labels[sample_idx] = cluster_idx
 
         return labels
-
 
     def _create_clusters(self, centroids):
         clusters = [[] for _ in range(self.k)]
