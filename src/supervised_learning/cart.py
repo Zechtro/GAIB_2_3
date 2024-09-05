@@ -106,10 +106,13 @@ class DecisionTreeClassifier():
             self.show_tree(tree.right, indent + indent)
     
     def fit(self, X, y):
+        X = X.values
+        y = y.values.reshape(-1, 1)
         dataset = np.concatenate((X, y), axis=1)
         self.root = self.build_tree(dataset)
     
     def predict(self, X):
+        X = X.values
         predictions = [self._predict(x, self.root) for x in X]
         return predictions
     
@@ -121,25 +124,3 @@ class DecisionTreeClassifier():
             return self._predict(X, tree.left)
         else:
             return self._predict(X, tree.right)
-        
-# # from sklearn.datasets import load_iris
-# from sklearn.model_selection import train_test_split
-# import pandas as pd
-# df = pd.read_csv("dataset/SleepyDriverEEGBrainwave.csv")
-# y = df["classification"].values.reshape(-1, 1)
-# X = df.drop("classification", axis=1).values
-# # X, y = load_iris(return_X_y=True)
-# X_train, X_test, y_train, y_test = train_test_split(
-#     X, y, test_size=0.2, random_state=0, stratify=y
-# )
-
-# print(X.shape)
-# print(y.shape)
-
-# classifier = DecisionTreeClassifier(min_samples_split=3, max_depth=3)
-# classifier.fit(X_train,y_train)
-# classifier.show_tree()
-
-# y_pred = classifier.predict(X_test) 
-# from sklearn.metrics import accuracy_score
-# print(accuracy_score(y_test, y_pred))

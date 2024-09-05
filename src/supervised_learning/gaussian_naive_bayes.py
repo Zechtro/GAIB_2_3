@@ -3,6 +3,8 @@ import numpy as np
 
 class GaussianNaiveBayes:
     def fit(self, X, y) -> None:
+        X = X.values
+        y = y.values
         self.y_train = y
         self.unique_label = np.unique(y)
         self.params = [] 
@@ -17,6 +19,7 @@ class GaussianNaiveBayes:
         return coeff * exponent
 
     def predict(self, X):
+        X = X.values
         n_samples, _ = X.shape
         predictions = np.empty(n_samples)
         for idx, feature in enumerate(X):
@@ -32,28 +35,3 @@ class GaussianNaiveBayes:
             predictions[idx] = self.unique_label[np.argmax(posterior_probabilities)]
 
         return predictions
-
-# from sklearn.datasets import load_iris
-# from sklearn.metrics import accuracy_score, precision_recall_fscore_support
-# from sklearn.model_selection import train_test_split
-
-# X, y = load_iris(return_X_y=True)
-# train_X, test_X, train_y, test_y = train_test_split(
-#     X, y, test_size=0.5, random_state=0
-# )
-
-# gnb = GaussianNaiveBayes()
-# gnb.fit(train_X, train_y)
-# predictions = gnb.predict(test_X)
-
-# accuracy = accuracy_score(test_y, predictions)
-# precision, recall, fscore, _ = precision_recall_fscore_support(
-#     test_y, predictions, average="macro"
-# )
-
-# print(f"Accuracy:  {accuracy:.3f}")
-# print(f"Precision: {precision:.3f}")
-# print(f"Recall:    {recall:.3f}")
-# print(f"F-score:   {fscore:.3f}")
-# print()
-# print(f"Mislabeled points: {(predictions != test_y).sum()}/{test_X.shape[0]}")
