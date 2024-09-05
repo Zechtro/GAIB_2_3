@@ -31,6 +31,11 @@ class PCA:
     
     def show_explained_variance_ratio(self):
         print("="*8,"Explained Variance Ratio","="*8)
+        for i in range(len(self.components)):
+            print(f"PC{i+1}:", self.explained_variance_ratio[i])
+    
+    def show_all_explained_variance_ratio(self):
+        print("="*8,"Explained Variance Ratio","="*8)
         for i in range(len(self.all_components)):
             print(f"PC{i+1}:", self.explained_variance_ratio[i])
     
