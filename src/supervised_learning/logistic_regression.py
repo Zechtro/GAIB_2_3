@@ -9,11 +9,13 @@ class LogisticRegression():
         self.learning_rate = learning_rate
         self.n_iteration = n_iteration
         self.regularization = regularization
-        self.lamd = lambd
+        self.lambd = lambd
         self.weights = None
         self.bias = None
 
     def fit(self, X, y):
+        X = X.values
+        y = y.values
         n_samples, n_features = X.shape
         self.weights = np.zeros(n_features)
         self.bias = 0
@@ -38,6 +40,7 @@ class LogisticRegression():
             self.bias = self.bias - self.learning_rate*db
 
     def predict(self, X):
+        X = X.values
         linear_prediction = np.dot(X, self.weights) + self.bias
         y_pred = sigmoid(linear_prediction)
         # kalo y = 0.5 lebih baik anggep jadi 1 (mengantuk) untuk mengantisipasi

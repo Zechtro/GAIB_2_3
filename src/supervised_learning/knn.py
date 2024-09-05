@@ -21,14 +21,16 @@ class KNN:
         self.minkowski_p = minkowski_p
 
     def fit(self, X, y):
-        self.X_train = X
-        self.y_train = y
+        self.X_train = X.values
+        self.y_train = y.values
 
     def predict(self, X):
+        X = X.values
         predictions = [self._predict(x) for x in X]
         return predictions
 
     def _predict(self, x):
+        # print(self.X_train[:5])
         if(self.distance_metric == "euclidean"):
             distances = [euclidean_distance(x, x_train) for x_train in self.X_train]
         elif(self.distance_metric == "manhattan"):
@@ -52,29 +54,3 @@ class KNN:
             return most_common_labels[nearest_label_idx]
         else:
             return most_common_labels[0]
-
-# # Test 1   
-# X_train = np.array([[1, 2], [2, 3], [3, 4], [4, 5]])
-# y_train = np.array([0, 0, 1, 1])
-# knn = KNN(k=3, distance_metric="manhattan")
-# knn.fit(X_train, y_train)
-
-# # Test with different input points
-# X_test = np.array([[1.5, 2.5], [3.5, 4.5], [2, 4]])
-# expected_predictions = np.array([0, 1, 1])
-# predictions = knn.predict(X_test)
-
-# print("EXPECT:", expected_predictions)
-# print("PRED:", expected_predictions)
-
-# # Test 2
-# X_train = np.array([[1, 1], [2, 2], [3, 3], [4, 4], [5, 5]])
-# y_train = np.array([0, 0, 1, 1, 1])
-# knn = KNN(k=4, distance_metric="minkowski", minkowski_p=5)
-# knn.fit(X_train, y_train)
-# X_test = np.array([[3, 3]])
-# expected_prediction = 1  # May vary depending on tie-breaking method
-# prediction = knn.predict(X_test)[0]
-# print("Test 2 - Tie-Breaking (Equal Distances):")
-# print("Expected:", expected_prediction)
-# print("Predicted:", prediction)
