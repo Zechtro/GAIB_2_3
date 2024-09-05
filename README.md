@@ -41,16 +41,23 @@
 ### [Bagian 2] Supervised Learning
 
 [v] KNN
+
 [v] Logistic Regression
+
 [v] Gaussian Naive Bayes
+
 [v] CART
+
 [v] SVM
+
 [v] ANN
 
 ### [Bagian 3] Unsupervised Learning
 
 [v] K-Means
+
 [v] DBSCAN
+
 [v] PCA
 
 
