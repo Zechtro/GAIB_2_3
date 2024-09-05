@@ -1,7 +1,5 @@
 import numpy as np
-X = [[1, 2, 3, 2.5],
-     [2, 5, -1, 2],
-     [-1.5, 2.7, 3.3, -0.8]]
+from sklearn.model_selection import train_test_split
 
 class Layer:
     def __init__(self, n_inputs, n_neurons, init_method="random", activation="linear", learning_rate=0.5):
@@ -46,7 +44,6 @@ class Layer:
             layer2 = self.next_layer
             self.dZ = (np.dot(layer2.weights, layer2.dZ.T) * self.activation.derivation().T).T
         self.dW = 1 / m * np.dot(self.dZ.T, self.inputs)
-        # self.dW = 1 / m * np.dot(self.dZ, self.inputs.T)
         self.db = 1 / m * np.sum(self.dZ, 0)
     
     def updateParam(self):
@@ -182,7 +179,6 @@ class Loss_CrossEntropy:
 def oneHotEncode(y):
     one_hot_y = np.zeros((y.size, y.max()+1))
     one_hot_y[np.arange(y.size), y] = 1
-    # one_hot_y = one_hot_y.T
     return one_hot_y
 
 
@@ -244,7 +240,6 @@ class ANN:
 # y = df["classification"]
 # X = df.drop("classification", axis=1)
 
-# from sklearn.model_selection import train_test_split
 # X_train, X_test, y_train, y_test = train_test_split(
 #     X, y, test_size=0.2, random_state=42, stratify=y
 # )
