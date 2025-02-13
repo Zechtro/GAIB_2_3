@@ -1,4 +1,4 @@
-# AI/ML Algorithm from Scratch
+# AI/ML Algorithms from Scratch
 
 > Steven Tjhia
 
@@ -14,7 +14,7 @@
 
 
 ## General Information
-- This project aims to grasp a deeper understanding of several AI/ML algorithm by making them from scratch.
+- This project aims to grasp a deeper understanding of several AI/ML algorithms by making them from scratch.
 
 
 ## Technologies Used
