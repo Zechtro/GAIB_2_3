@@ -1,4 +1,4 @@
-# Seleksi GAIB 2024 Bagian 2 (DoE + Supervised Learning) dan 3 (Unsupervised Learning)
+# AI/ML Algorithm from Scratch
 
 > Steven Tjhia - 13522103
 
@@ -14,7 +14,7 @@
 
 
 ## General Information
-- This project aims to fulfill GAIB Lab Assistant selection.
+- This project aims to grasp a deeper understanding of several AI/ML algorithm by making them from scratch.
 
 
 ## Technologies Used
