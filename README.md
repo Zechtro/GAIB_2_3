@@ -1,6 +1,6 @@
 # AI/ML Algorithm from Scratch
 
-> Steven Tjhia - 13522103
+> Steven Tjhia
 
 
 ## Table of Contents
